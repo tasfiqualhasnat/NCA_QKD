@@ -1,0 +1,18 @@
+PHASE 1 AUDIT REPORT (RE-RUN)
+-----------------------------
+Status: PASS
+
+1. Statistics:
+   Mean QBER: 0.0172 (Target ~0.015) [OK]
+   Attack Fraction: 0.40 (Target 0.4-0.6) [OK]
+
+2. Lag Sweep Correlations:
+   Lag 0:     0.9473 (Reference)
+   Lag 200:   0.9508 (Too fast for 50k drift)
+   Lag 1000:  0.9431
+   Lag 5000:  0.7037 <-- PRODUCTION SETTING (Target: 0.4-0.75)
+   Lag 12500: 0.2008 (Decorrelation Check)
+
+3. Verdict:
+   Production Lag (5000) achieves correlation 0.7037.
+   This falls within the 'Stealth but Detectable' regime.
