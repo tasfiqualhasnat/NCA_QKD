@@ -50,33 +50,42 @@ NCA_QKD/
     └── models/             # Saved XGBoost / LSTM models
 ```
 
-### 🛠️ Installation
-#### Clone the repository
+## 🧪 How to Run :
+
+To reproduce the results presented in the paper, run the notebooks in the following order:
+
+#### Step 1: Clone the repository
 ```
 git clone https://github.com/tasfiqualhasnat/NCA_QKD.git
 cd NCA_QKD
 ```
-#### Create a virtual environment (recommended) : 
+- Ensure the directory structure matches the project tree.
+  (The code will auto-create `data/` and `results/` if missing.)
+
+#### Step 2: Create a virtual environment (recommended) : 
 ```python -m venv venv```
+
 #### Activate it:
-Linux / macOS : ```source venv/bin/activate```
-Windows: ```venv\Scripts\activate```
-Install dependencies: ```pip install -r requirements.txt```
+- Linux / macOS : ```source venv/bin/activate```
 
-## 🧪 Usage Workflow
+- Windows: ```venv\Scripts\activate```
 
-To reproduce the results presented in the paper, run the notebooks in the following order:
+- Install dependencies: ```pip install -r requirements.txt```
 
-1. **01_Physics_Validation.ipynb**  
+### Step 3: Run  Physics Validation
+- ```**notebooks/01_Physics_Validation.ipynb**```  
    Simulates the lag sweep experiment to identify the gray zone where Eve remains correlated (ρ ≈ 0.7) but undetectable by standard QBER thresholds.  
    **Output:** `results/figures/fig2_lag_sweep.png`
 
-2. **02_Data_Generation.ipynb**  
-   Generates 10^7 photon pulses using the `ProductionInjector` class and splits data into *Normal* (thermal drift) and *Attack* (NCA) regimes.  
-   **Output:** Raw CSV files in `data/production_run/`
+### Step 2: Large-Scale Data Generation
+```**notebooks/02_Data_Generation.ipynb**```  
+   - Generates 10^7 photon pulses using the `ProductionInjector` class and splits data into *Normal* (thermal drift) and *Attack* (NCA) regimes.  
+   - Applies sliding windows and extracts physics features
+   **Output:** Raw CSV files in `data/production_run/` &  windowed features to `data/windows/`
 
-3. **03_Benchmark_Results.ipynb**  
-   Extracts statistical features (mean, variance, skewness, kurtosis, Fano factor), trains **XGBoost (proposed)** and **LSTM (baseline)** models, and generates ROC curves and feature-importance plots.  
+### Step 3: Benchmarking & AI Training
+```**notebooks/03_Benchmark_Results.ipynb**```
+   - Extracts statistical features (mean, variance, skewness, kurtosis, Fano factor), trains **XGBoost (proposed)** and **LSTM (baseline)** models, and generates ROC curves and feature-importance plots.  
    **Output:** `fig3_roc_curves.png`, `fig4_feature_importance.png`
 
 ---
