@@ -73,18 +73,18 @@ cd NCA_QKD
 - Install dependencies: ```pip install -r requirements.txt```
 
 ### Step 3: Run  Physics Validation
-- ```**notebooks/01_Physics_Validation.ipynb**```  
+- ```notebooks/01_Physics_Validation.ipynb```  
    Simulates the lag sweep experiment to identify the gray zone where Eve remains correlated (ρ ≈ 0.7) but undetectable by standard QBER thresholds.  
    **Output:** `results/figures/fig2_lag_sweep.png`
 
 ### Step 2: Large-Scale Data Generation
-```**notebooks/02_Data_Generation.ipynb**```  
+```notebooks/02_Data_Generation.ipynb```  
    - Generates 10^7 photon pulses using the `ProductionInjector` class and splits data into *Normal* (thermal drift) and *Attack* (NCA) regimes.  
    - Applies sliding windows and extracts physics features
    **Output:** Raw CSV files in `data/production_run/` &  windowed features to `data/windows/`
 
 ### Step 3: Benchmarking & AI Training
-```**notebooks/03_Benchmark_Results.ipynb**```
+```notebooks/03_Benchmark_Results.ipynb```
    - Extracts statistical features (mean, variance, skewness, kurtosis, Fano factor), trains **XGBoost (proposed)** and **LSTM (baseline)** models, and generates ROC curves and feature-importance plots.  
    **Output:** `fig3_roc_curves.png`, `fig4_feature_importance.png`
 
